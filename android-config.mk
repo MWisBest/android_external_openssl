@@ -23,8 +23,9 @@ LOCAL_CFLAGS += \
 # Intentionally excluded http://b/7079965
 LOCAL_CFLAGS := $(filter-out -DZLIB, $(LOCAL_CFLAGS))
 
-# Doesn't build with strict aliasing, not feasible to fix it either.
+ifneq ($(DEBUG_FORCE_STRICT_ALIASING),yes)
 LOCAL_CFLAGS += -fno-strict-aliasing
+endif
 
 # Debug
 # LOCAL_CFLAGS += -DCIPHER_DEBUG
